@@ -1,5 +1,6 @@
 node{
 def MavenHome = tool name: "3.9.1"
+slackSend channel: '#notifications', tokenCredentialId: 'ebcffd37-5910-4e70-ab31-c445cb3a71c4'
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 stage('CheckOutCode') {
 git branch: 'development', credentialsId: 'bd55f5cc-859e-4241-8d4c-324dc7ce1007', url: 'https://github.com/CGOrganization1/maven-web-application.git'
