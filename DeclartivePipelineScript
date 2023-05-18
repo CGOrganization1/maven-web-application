@@ -9,10 +9,11 @@ triggers {
     tools{
         maven '3.9.1'
     }
+properties([parameters([choice(choices: ['development', 'master', 'stage', 'uat'], description: 'Select cheyu ado okati branch', name: 'BranchName'), string(defaultValue: 'Srini', description: 'Give the name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
 stages{
 stage('CheckOutCode'){
     steps{
-        git branch: 'development', credentialsId: 'bd55f5cc-859e-4241-8d4c-324dc7ce1007', url: 'https://github.com/CGOrganization1/maven-web-application.git'
+        git branch: “${params.BranchName}”, credentialsId: 'bd55f5cc-859e-4241-8d4c-324dc7ce1007', url: 'https://github.com/CGOrganization1/maven-web-application.git'
     }
 }
 stage('Build'){
